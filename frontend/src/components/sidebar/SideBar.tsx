@@ -1,16 +1,28 @@
-'use client'
-import {Backdrop, Box, CircularProgress, Link, List, ListItem, ListItemText} from "@mui/material";
-import {useQuery} from "@tanstack/react-query";
+"use client";
+import {
+  Backdrop,
+  Box,
+  CircularProgress,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/axios";
-import {Meal} from "@/types/meal";
-import {listItemStyle, listTextStyle, sidebarBoxStyle} from "@/components/sidebar/SideBar.styles";
+import { Meal } from "@/types/meal";
+import {
+  listItemStyle,
+  listTextStyle,
+  sidebarBoxStyle,
+} from "@/components/sidebar/SideBar.styles";
 
-export default function SideBar({category}: { category: string }) {
-  const {isLoading, data} = useQuery({
-    queryKey: ['recipe', category],
+export default function SideBar({ category }: { category: string }) {
+  const { isLoading, data } = useQuery({
+    queryKey: ["recipe", category],
     queryFn: () => api.get(`/recipe/?category=${category}`),
-  })
-  const meals: Meal[] = data?.data?.meals || []
+  });
+  const meals: Meal[] = data?.data?.meals || [];
 
   return (
     <Box sx={sidebarBoxStyle}>

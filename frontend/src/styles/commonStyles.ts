@@ -1,16 +1,16 @@
-import {SxProps, Theme} from "@mui/system";
+import { SxProps, Theme } from "@mui/system";
 
 export const listItemStyle: SxProps<Theme> = {
   paddingY: 1,
-  color: 'primary.main',
-  textDecoration: 'none',
-  '&:hover': {
-    backgroundColor: 'action.hover',
+  color: "primary.main",
+  textDecoration: "none",
+  "&:hover": {
+    backgroundColor: "action.hover",
     borderRadius: 1,
   },
 };
 
 export const listTextStyle: SxProps<Theme> = {
   fontWeight: 500,
-  fontSize: '1rem',
+  fontSize: "1rem",
 };
