@@ -1,16 +1,14 @@
-import {Controller, Get, Param, Query} from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
-import {GetRecipesDto} from "./dto/get-recipes.dto";
+import { GetRecipesDto } from './dto/get-recipes.dto';
 
 @Controller('recipe')
 export class RecipeController {
   constructor(private readonly recipeService: RecipeService) {}
 
   @Get()
-  async getRecipes(
-      @Query() query: GetRecipesDto
-  ) {
-      return this.recipeService.getRecipes(query)
+  async getRecipes(@Query() query: GetRecipesDto) {
+    return this.recipeService.getRecipes(query);
   }
 
   @Get(':id')
