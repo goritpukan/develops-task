@@ -1,49 +1,39 @@
-import nextPlugin from '@next/eslint-plugin-next';
-import tseslint from 'typescript-eslint';
+import js from '@eslint/js';
+import * as prettier from 'eslint-config-prettier';
+import * as tseslint from '@typescript-eslint/eslint-plugin';
+import parser from '@typescript-eslint/parser';
+import next from '@next/eslint-plugin-next';
 import prettierPlugin from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
 
 export default [
-  ...tseslint.configs.recommended,
-
   {
-    plugins: {
-      '@next/next': nextPlugin
-    },
-    rules: {
-      ...nextPlugin.configs['core-web-vitals'].rules,
-      ...nextPlugin.configs.recommended.rules
-    }
-  },
-
-  prettierConfig,
-  {
-    plugins: {
-      prettier: prettierPlugin
-    },
-    rules: {
-      'prettier/prettier': ['error', {
-        singleQuote: true,
-        semi: true,
-        tabWidth: 2,
-        printWidth: 100,
-        trailingComma: 'es5',
-        arrowParens: 'avoid',
-        endOfLine: 'auto'
-      }]
-    }
-  },
-
-  {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{js,ts,jsx,tsx}'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
+      parser,
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
-      }
-    }
-  }
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+      '@next/next': next,
+      prettier: prettierPlugin,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...tseslint.configs.recommended.rules,
+      ...next.configs.recommended.rules,
+      ...next.configs['core-web-vitals'].rules,
+      'prettier/prettier': 'error',
+    },
+  },
+  {
+    rules: {
+      ...prettier.rules,
+    },
+  },
 ];
