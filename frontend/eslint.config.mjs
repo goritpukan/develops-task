@@ -6,7 +6,13 @@ import prettierConfig from 'eslint-config-prettier';
 import next from '@next/eslint-plugin-next';
 
 export default [
-  js.configs.recommended,
+  {
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+      },
+    },
+  },
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {

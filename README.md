@@ -55,7 +55,7 @@ cd develops-task
 
 2. Start the application with Docker Compose:
 ```bash
-docker-compose up
+sudo docker compose up --build
 ```
 
 3. Access the application:
