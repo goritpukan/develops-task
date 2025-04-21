@@ -17,6 +17,10 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+        excludeExtraneousValues: true,
+      },
     }),
   );
   await app.listen(port ?? 8800);
